@@ -1,0 +1,43 @@
+/* =========================================================================
+   CORE THEME SETUP & DESIGN TOKENS (From colorPallet.pdf & fonts.pdf)
+   ========================================================================= */
+body {
+    background-color: #172836 !important; /* Oceanic Noir Primary Background */
+    color: #F1F6F4 !important;            /* Arctic Powder Main Typography Foreground */
+    font-family: 'Inter', sans-serif !important;
+}
+
+h1, h2, h3, .font-mono {
+    font-family: 'JetBrains Mono', monospace !important; /* Authentic Tech Coding Aesthetic */
+}
+
+/* =========================================================================
+   CUSTOM UTILITY COLOR MATRIX EXTENSIONS (Bypasses Framework Limitations)
+   ========================================================================= */
+.bg-oceanicNoir { 
+    background-color: #172836 !important; 
+}
+.bg-nocturnalExp { 
+    background-color: #114C5A !important; /* Deep Teal Accent Layer */
+}
+.bg-nocturnalExp-10 { 
+    background-color: rgba(17, 76, 90, 0.1) !important; 
+}
+.bg-nocturnalExp-5 { 
+    background-color: rgba(17, 76, 90, 0.05) !important; 
+}
+.bg-forsythia { 
+    background-color: #FFC801 !important; /* Solid Yellow Popular Badge Mask Overlay */
+}
+
+/* Text Token Classes */
+.text-forsythia { color: #FFC801 !important; }
+.text-deepSaffron { color: #FF9932 !important; }
+.text-mysticMint { color: #D9E8E2 !important; }
+.text-arcticPowder { color: #F1F6F4 !important; }
+
+/* Border Framework Structural Toggles */
+.border-forsythia-30 { border-color: rgba(255, 200, 1, 0.3) !important; }
+.border-forsythia { border-color: #FFC801 !important; }
+.border-nocturnalExp-20 { border-color: rgba(17, 76, 90, 0.2) !important; }
+.border-nocturnalExp-30 { border-color: rgba(17, 76, 90, 0.3) !important; }

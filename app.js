@@ -174,3 +174,79 @@ document.addEventListener('DOMContentLoaded', () => {
     // Establish structural grid orientation baselines on engine launch
     syncLayoutStates();
 });
+
+// =========================================================================
+// PERFORMANCE OPTIMIZED NATIVE 3D MESH TERRAIN SIMULATION ENGINE (Zero Dep)
+// =========================================================================
+(function initHero3DMatrix() {
+    const canvas = document.getElementById('hero-3d-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = canvas.offsetWidth;
+    let height = canvas.height = canvas.offsetHeight;
+
+    window.addEventListener('resize', () => {
+        if (!canvas.offsetWidth) return;
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+    });
+
+    const cols = 28;
+    const rows = 18;
+    let time = 0;
+
+    function renderWireframeMatrix() {
+        ctx.clearRect(0, 0, width, height);
+        
+        // Premium subtle grid lines mapping using Forsythia token palette
+        ctx.strokeStyle = 'rgba(255, 200, 1, 0.15)'; 
+        ctx.lineWidth = 1;
+
+        time += 0.015;
+        const points = [];
+
+        // 1. Calculate and project dynamic undulating nodes matrix coordinates
+        for (let r = 0; r <= rows; r++) {
+            points[r] = [];
+            for (let c = 0; c <= cols; c++) {
+                // Normalize positions mapping across coordinates grid planes
+                const nx = (c / cols) - 0.5;
+                const ny = (r / rows) - 0.4;
+
+                // Complex dual-wave interference pattern simulating terrain mesh layers
+                const wave1 = Math.sin(nx * 3.5 + time) * Math.cos(ny * 2.5 + time);
+                const wave2 = Math.sin(ny * 5.0 - time * 1.5) * 0.4;
+                const z = (wave1 + wave2) * 28;
+
+                // Apply mathematical perspective projection matrices
+                const fov = 260;
+                const perspective = fov / (fov + (ny * 160) + 40);
+                
+                const screenX = (width / 2) + (nx * width * 1.4) * perspective;
+                const screenY = (height * 0.45) + (ny * height * 0.75 + z) * perspective;
+
+                points[r][c] = { x: screenX, y: screenY };
+            }
+        }
+
+        // 2. Compute indices arrays structural connections bounds path loops
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                ctx.beginPath();
+                // Draw horizontal structural wireframe vectors
+                ctx.moveTo(points[r][c].x, points[r][c].y);
+                ctx.lineTo(points[r][c + 1].x, points[r][c + 1].y);
+                // Draw vertical structural wireframe vectors
+                ctx.moveTo(points[r][c].x, points[r][c].y);
+                ctx.lineTo(points[r + 1][c].x, points[r + 1][c].y);
+                ctx.stroke();
+            }
+        }
+
+        requestAnimationFrame(renderWireframeMatrix);
+    }
+    
+    // Fire up the hardware accelerated animation sequence frame loop
+    requestAnimationFrame(renderWireframeMatrix);
+})();
